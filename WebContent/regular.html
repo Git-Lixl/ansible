@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="/RegClServlet?type=getIp" method="post">
+    从文本中提取出ip地址，一个ip地址一行：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+
+<form action="/RegClServlet?type=getConf" method="post">
+    提取出有效的配置信息，去除注释(#或者;)和空行：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+
+<form action="/RegClServlet?type=getDomain" method="post">
+    从文本中提取出域名，一个域名一行：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+
+<form action="/RegClServlet?type=getMail" method="post">
+    从文本中提取出邮箱，一个邮箱一行：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+
+<form action="/DomainClServlet?type=getGuishudi" method="post">
+    批量查找ip的归属地：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+
+<form action="/DomainClServlet?type=getAllIp" method="post">
+    批量查找域名对应的ip地址：<br />
+    <textarea rows="5" cols="150" name="alltext"></textarea><br />
+    <input type="submit" value="提交" />
+</form>
+</body>
+</html>

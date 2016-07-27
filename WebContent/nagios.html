@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="NagiosClServlet" method="post">
+    添加主机：<br />
+    <textarea rows="15" cols="30" name="iptext"></textarea><br />
+    添加服务：<br />
+    <textarea rows="15" cols="30" name="servicetext"></textarea><br />
+    添加只读检测：<br />
+    <textarea rows="15" cols="30" name="readonly"></textarea><br />
+    添加selinux等检测：<br />
+    <textarea rows="15" cols="30" name="selinux"></textarea><br />
+    添加机组：<br />
+    <textarea rows="3" cols="30" name="group"></textarea><br />
+    添加日志监控：<br />
+    <textarea rows="3" cols="30" name="logs"></textarea><br />
+    拉取日志shell生成：<br />
+    <textarea rows="3" cols="30" name="filename"></textarea><br />
+    <select name="nrpe">
+        <option value="nagios">重启nagios</option>
+        <option value="nrpe">重启nrpe</option>
+    </select><br/>
+    <input type="submit" value="提交" />
+</form>
+</body>
+</html>

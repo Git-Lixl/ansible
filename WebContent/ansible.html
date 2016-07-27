@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{font-family: Verdana, sans-serif;}
+        a{text-decoration:none;}
+    </style>
+</head>
+<body>
+<form action="AnsibleClServlet" method="post">
+    <table>
+        <tr>
+            <td>选择主机: </td>
+            <td><select name="host">
+                <option value="me">me</option>
+                <option value="all">all</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>选择模块:</td>
+            <td><select name="module" style="width: 100px;">
+                <option value="copy">copy</option>
+                <option value="shell">shell</option>
+                <option value="cron">cron</option>
+                <option value="synchronize">synchronize</option>
+                <option value="yum">yum</option>
+                <option value="script">script</option>
+                <option value="user">user</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>模块命令:</td>
+            <td><input type="text" name="command" value=" 参考底下提供的模块命令" onfocus="if(value==' 参考底下提供的模块命令'){value=''}" onblur="if(value==''){value=' 参考底下提供的模块命令'}" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>其它:</td>
+            <td><select name="other" style="width: 100px;">
+                <option value="nginx">nginx</option>
+                <option value="php-fpm">php-fpm</option>
+            </select></td>
+        </tr>
+    </table>
+    <input type="submit" value="ansible命令生成" />
+</form>
+<br />
+<textarea rows="17" cols="170">
+copy（拷贝文件/文件夹）：
+  src=/root/stock.conf dest=/usr/local/nginx/conf/vhosts/ backup=yes mode=755 #单个文件
+  src=/root/mydir dest=/tmp/ backup=yes #拷贝文件夹，mydir整个目录
+  src=/root/mydir/ dest=/tmp/ backup=yes #拷贝文件夹，mydir下的所有目录文件，不包含mydir。
+cron（cron任务）： name='job name' user='root' minute=* hour='5,2' day=* month=* weekday=* job='/usr/sbin/ntpdate 192.168.0.1 >/dev/null 2>&1'
+shell（命令）： ll /usr/local/nginx/conf/nginx.conf
+script（上传脚本并执行）：/root/test.sh
+user（管理用户）：
+  name=xxx groups=xxx state=present #添加用户
+  name=xxx state=absent remove=yes #删除用户
+yum（软件管理）：
+  name=lrzsz state=present #安装软件
+  name=lrzsz state=absent #卸载软件
+synchronize(文件同步)：
+  src=/root/mydir dest=/tmp/ compress=yes delete=yes #指定delete=yes将使两边的目录一模一样，以src为准
+</textarea><br /><br />
+<textarea rows="15" cols="170">
+install_plugin_nrpe.yaml:
+
+- hosts: 192.168.205.7
+  remote_user: root
+  tasks:
+    - name: upload plugin
+      copy: src=/data/zhuangweihong/nagios/nagios-plugins-2.0.3.tar.gz dest=/usr/local/src backup=yes
+
+    - name: upload nrpe
+      copy: src=/data/zhuangweihong/nagios/nrpe-2.15.tar.gz dest=/usr/local/src backup=yes
+
+    - name: upload installjiaoben
+      copy: src=/data/zhuangweihong/nagios/installpluginnrpe.sh dest=/usr/local/src backup=yes mode=0755
+</textarea>
+</body>
+</html>

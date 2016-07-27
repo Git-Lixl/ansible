@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{font-family: Verdana, sans-serif;}
+        a{text-decoration:none;color:blue;}
+        a:visited {text-decoration: none;color:blue;}
+        a:hover { text-decoration: underline; color:blue;}
+    </style>
+</head>
+<body>
+    去重只需要填写第一个text，对比需要填写两个，格式都要为192.168.1.1/32，多个的话列多行：<br />
+    <form action="IpRange" method="post">
+        <textarea rows="15" cols="30" name="srcip"></textarea>
+        <textarea rows="15" cols="30" name="dstip"></textarea><br />
+        <input type="radio" name="type" value="qucong" />去重  <input type="radio" name="type" value="diff" checked="checked" />对比<br>
+        <input type="submit" value="提交判断" />
+    </form>
+</body>
+</html>
